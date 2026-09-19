@@ -154,51 +154,33 @@ export default function Dashboard({ summary, onAddStock, onViewProduct, onGoToPr
                     </tr>
                   ))}
                 </tbody>
-
-                <div className="card dashboard-alert-snapshot">
-                  <div className="dashboard-alert-heading">
-                    <div>
-                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Stock Signals</h3>
-                      <p style={{ color: '#94a3b8', fontSize: '0.8rem' }}>Recommendations calculated from each product's live threshold.</p>
-                    </div>
-                    <button className="btn btn-outline btn-sm" onClick={onGoToProducts}>Manage inventory</button>
-                  </div>
-                  <div className="dashboard-alert-grid">
-                    <div className="dashboard-alert-column">
-                      <div className="dashboard-alert-label" style={{ color: '#fbbf24' }}>Low stock</div>
-                      {reorderRecommendations.filter((product) => product.quantity > 0).length === 0 ? (
-                        <p className="dashboard-alert-empty">No low-stock products.</p>
-                      ) : reorderRecommendations.filter((product) => product.quantity > 0).map((product) => (
-                        <div className="dashboard-alert-item" key={`low-${product.id}`}>
-                          <span>{product.name}</span><strong>{product.quantity} / {product.lowStockThreshold} {product.unit}</strong>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="dashboard-alert-column">
-                      <div className="dashboard-alert-label" style={{ color: '#f87171' }}>Out of stock</div>
-                      {outOfStockProducts.length === 0 ? (
-                        <p className="dashboard-alert-empty">No out-of-stock products.</p>
-                      ) : outOfStockProducts.map((product) => (
-                        <div className="dashboard-alert-item" key={`out-${product.id}`}>
-                          <span>{product.name}</span><strong>{product.unit}</strong>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="dashboard-alert-column">
-                      <div className="dashboard-alert-label" style={{ color: '#34d399' }}>Reorder today</div>
-                      {reorderRecommendations.length === 0 ? (
-                        <p className="dashboard-alert-empty">No reorder recommendations.</p>
-                      ) : reorderRecommendations.map((product) => (
-                        <div className="dashboard-alert-item" key={`reorder-${product.id}`}>
-                          <span>{product.name}</span><strong>Target {product.lowStockThreshold} {product.unit}</strong>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
               </table>
             </div>
           )}
+
+          <div className="dashboard-alert-snapshot">
+            <div className="dashboard-alert-heading">
+              <div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Stock Signals</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.8rem' }}>Recommendations calculated from each product's live threshold.</p>
+              </div>
+              <button className="btn btn-outline btn-sm" onClick={onGoToProducts}>Manage inventory</button>
+            </div>
+            <div className="dashboard-alert-grid">
+              <div className="dashboard-alert-column">
+                <div className="dashboard-alert-label" style={{ color: '#fbbf24' }}>Low stock</div>
+                {reorderRecommendations.filter((product) => product.quantity > 0).length === 0 ? <p className="dashboard-alert-empty">No low-stock products.</p> : reorderRecommendations.filter((product) => product.quantity > 0).map((product) => <div className="dashboard-alert-item" key={`low-${product.id}`}><span>{product.name}</span><strong>{product.quantity} / {product.lowStockThreshold} {product.unit}</strong></div>)}
+              </div>
+              <div className="dashboard-alert-column">
+                <div className="dashboard-alert-label" style={{ color: '#f87171' }}>Out of stock</div>
+                {outOfStockProducts.length === 0 ? <p className="dashboard-alert-empty">No out-of-stock products.</p> : outOfStockProducts.map((product) => <div className="dashboard-alert-item" key={`out-${product.id}`}><span>{product.name}</span><strong>{product.unit}</strong></div>)}
+              </div>
+              <div className="dashboard-alert-column">
+                <div className="dashboard-alert-label" style={{ color: '#34d399' }}>Reorder today</div>
+                {reorderRecommendations.length === 0 ? <p className="dashboard-alert-empty">No reorder recommendations.</p> : reorderRecommendations.map((product) => <div className="dashboard-alert-item" key={`reorder-${product.id}`}><span>{product.name}</span><strong>Target {product.lowStockThreshold} {product.unit}</strong></div>)}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Recent Activity Feed */}
