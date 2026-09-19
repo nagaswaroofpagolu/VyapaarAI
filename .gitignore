@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+target/
+.mvn/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.class
+
+# Build artifacts
+dist/
+build/
+*.jar
+*.war
+
+# Environment
+.env
+.env.local
